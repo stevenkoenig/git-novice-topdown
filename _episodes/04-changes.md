@@ -17,27 +17,27 @@ keypoints:
 - "Always write a log message when committing changes."
 ---
 
-Let's create a file called `ToDo.txt` that contains some notes
-about the conversion tools we want. (We'll use `nano` to edit the file,
+Let's create a file called `ingredients.txt` that contains some notes
+about the ingredients we want. (We'll use `nano` to edit the file,
 but you can use whatever editor you like.)
 
 ~~~
-$ nano ToDo.txt
+$ nano ingredients.txt
 ~~~
 {: .bash}
 
-Type the text below into the `ToDo.txt` file:
+Type the text below into the `ingredients.txt` file:
 
 ~~~
-Conversion functions needed:
-
-- Dollars to Cents
-- Gallons to Liters
-- Hours to Minutes
+4 avocados
+1/2 onion
+cilantro
+salt
+pepper
 ~~~
 {: .output}
 
-`ToDo.txt` now contains several lines, which we can see by running:
+`ingredients.txt` now contains several lines, which we can see by running:
 
 ~~~
 $ ls
@@ -45,21 +45,21 @@ $ ls
 {: .bash}
 
 ~~~
-ToDo.txt
+ingredients.txt
 ~~~
 {: .output}
 
 ~~~
-$ cat ToDo.txt
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-Conversion functions needed:
-
-- Dollars to Cents
-- Gallons to Liters
-- Hours to Minutes
+4 avocados
+1/2 onion
+cilantro
+salt
+pepper
 ~~~
 {: .output}
 
@@ -79,7 +79,7 @@ Initial commit
 Untracked files:
    (use "git add <file>..." to include in what will be committed)
 
-	ToDo.txt
+	ingredients.txt
 nothing added to commit but untracked files present (use "git add" to track)
 ~~~
 {: .output}
@@ -89,7 +89,7 @@ that Git isn't keeping track of.
 We can tell Git to track a file using `git add`:
 
 ~~~
-$ git add ToDo.txt
+$ git add ingredients.txt
 ~~~
 {: .bash}
 
@@ -108,32 +108,32 @@ Initial commit
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-	new file:   ToDo.txt
+	new file:   ingredients.txt
 
 ~~~
 {: .output}
 
-Git now knows that it's supposed to keep track of `ToDo.txt`,
+Git now knows that it's supposed to keep track of `ingredients.txt`,
 but it hasn't recorded these changes as a commit yet.
 To get it to do that,
 we need to run one more command:
 
 ~~~
-$ git commit -m "Start notes on conversion tools"
+$ git commit -m "Start our shopping list"
 ~~~
 {: .bash}
 
 ~~~
 [master (root-commit) f22b25e] Start notes on conversion tools
  1 file changed, 5 insertion(+)
- create mode 100644 ToDo.txt
+ create mode 100644 ingredients.txt
 ~~~
 {: .output}
 
 When we run `git commit`, Git takes everything we have told it to
  save by using `git add` and stores a copy permanently inside the
   special `.git` directory. This permanent copy is called a '`commit`'
- (or '`revision`') and its short identifier is `f22b25e`
+ (or '`revision`') and its short identifier is `bb13e9f`
  (Your commit will have another identifier of similar length.)
 
 We use the '`-m`' flag (for "message") to record a short, descriptive,
@@ -170,11 +170,11 @@ $ git log
 {: .bash}
 
 ~~~
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit bb13e9f40d12bddc307c7052e31ede7624dc9f4a
+Author: Becca Love <rlove1@nd.edu>
+Date:   Wed Aug 2 17:41:33 2017 -0400
 
-    Start notes on conversion tools
+    Start our shopping list
 ~~~
 {: .output}
 
@@ -187,28 +187,28 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 
 > ## Where Are My Changes?
 >
-> If we run `ls` at this point, we will still see just one file called `ToDo.txt`.
+> If we run `ls` at this point, we will still see just one file called `ingredients.txt`.
 > That's because Git saves information about files' history
 > in the special `.git` directory mentioned earlier
 > so that our filesystem doesn't become cluttered
 > (and so that we can't accidentally edit or delete an old version).
 {: .callout}
 
-Now suppose we add more information to the ToDo.txt file.
+Now suppose we add more information to the `ingredients.txt` file.
 
 ~~~
-$ nano ToDo.txt
-$ cat ToDo.txt
+$ nano ingredients.txt
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-Conversion functions needed:
-
-- Dollars to Cents
-- Gallons to Liters
-- Hours to Minutes
-- Feet to Inches
+4 avocados
+1/2 onion
+cilantro
+salt
+pepper
+1/2 tomato
 ~~~
 {: .output}
 
@@ -226,7 +226,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   ToDo.txt
+	modified:   ingredients.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -246,18 +246,15 @@ $ git diff
 {: .bash}
 
 ~~~
-diff --git a/ToDo.txt b/ToDo.txt
-index 497e6b4..49e6774 100644
---- a/ToDo.txt
-+++ b/ToDo.txt
-@@ -2,4 +2,5 @@ Conversion functions needed:
-
- - Dollars to Cents
- - Gallons to Liters
--- Hours to Minutes
-\ No newline at end of file
-+- Hours to Minutes
-+- Feet to Inches
+diff --git a/ingredients.txt b/ingredients.txt
+index 946aaff..a97a372 100644
+--- a/ingredients.txt
++++ b/ingredients.txt
+@@ -3,3 +3,4 @@
+ cilantro
+ salt
+ pepper
++1/2 tomato
 ~~~
 {: .output}
 
@@ -268,7 +265,7 @@ The output is cryptic because it is actually a series of computer
 1.  The first line tells us that Git is producing output similar to the
     Unix `diff` command comparing the old and new versions of the file.
 2.  The second line tells exactly which versions of the file
-    Git is comparing; `497e6b4` and `49e6774` are unique
+    Git is comparing; `946aaff` and `a97a372` are unique
     computer-generated labels for those versions.
 3.  The third and fourth lines once again show the name of the file
     being changed.
@@ -279,7 +276,7 @@ The output is cryptic because it is actually a series of computer
 After reviewing our change, it's time to commit it:
 
 ~~~
-$ git commit -m "Add another desirable conversion tool"
+$ git commit -m "Add tomatoes to the shopping list"
 $ git status
 ~~~
 {: .bash}
@@ -290,7 +287,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   ToDo.txt
+	modified:   ingredients.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -301,13 +298,13 @@ Git won't commit because we didn't use `git add` first.
 Let's fix that:
 
 ~~~
-$ git add ToDo.txt
+$ git add ingredients.txt
 $ git commit -m "Add another desirable conversion tool"
 ~~~
 {: .bash}
 
 ~~~
-[master 34961b1] Add another desirable conversion tool
+[master 36b7fd8] Add tomatoes to the shopping list
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
@@ -352,19 +349,19 @@ to the staging area and into long-term storage.
 First, we'll add another line to the file:
 
 ~~~
-$ nano ToDo.txt
-$ cat ToDo.txt
+$ nano ingredients.txt
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-Conversion functions needed:
-
-- Dollars to Cents
-- Gallons to Liters
-- Hours to Minutes
-- Feet to Inches
-- Degrees to Radians
+4 avocados
+1/2 onion
+cilantro
+salt
+pepper
+1/2 tomato
+habaneros
 ~~~
 {: .output}
 
@@ -374,15 +371,15 @@ $ git diff
 {: .bash}
 
 ~~~
-diff --git a/ToDo.txt b/ToDo.txt
-index 49e6774..7a10866 100644
---- a/ToDo.txt
-+++ b/ToDo.txt
-@@ -4,3 +4,4 @@ Conversion functions needed:
- - Gallons to Liters
- - Hours to Minutes
- - Feet to Inches
-+-Degrees to Radians
+diff --git a/ingredients.txt b/ingredients.txt
+index a97a372..2156a4f 100644
+--- a/ingredients.txt
++++ b/ingredients.txt
+@@ -4,3 +4,4 @@ cilantro
+ salt
+ pepper
+ 1/2 tomato
++habaneros
 ~~~
 {: .output}
 
@@ -408,15 +405,15 @@ $ git diff --staged
 {: .bash}
 
 ~~~
-diff --git a/ToDo.txt b/ToDo.txt
-index 49e6774..7a10866 100644
---- a/ToDo.txt
-+++ b/ToDo.txt
-@@ -4,3 +4,4 @@ Conversion functions needed:
- - Gallons to Liters
- - Hours to Minutes
- - Feet to Inches
-+-Degrees to Radians
+diff --git a/ingredients.txt b/ingredients.txt
+index a97a372..2156a4f 100644
+--- a/ingredients.txt
++++ b/ingredients.txt
+@@ -4,3 +4,4 @@ cilantro
+ salt
+ pepper
+ 1/2 tomato
++habaneros
 ~~~
 {: .output}
 
@@ -426,12 +423,12 @@ and what's in the staging area.
 Let's save our changes:
 
 ~~~
-$ git commit -m "Add the Degrees to Radians conversion"
+$ git commit -m "Add some heat to this guac"
 ~~~
 {: .bash}
 
 ~~~
-[master 005937f] Add the Degrees to Radians conversion
+[master a6cca18] Add some heat to this guac
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
@@ -457,23 +454,29 @@ $ git log
 {: .bash}
 
 ~~~
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:14:07 2013 -0400
+commit a6cca18f221f51403466a1bb80a6871a97bae355
+Author: Becca Love <rlove1@nd.edu>
+Date:   Wed Aug 2 17:47:08 2017 -0400
 
-    Add the Degrees to Radians conversion
+    Add some heat to this guac
 
-commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:07:21 2013 -0400
+commit 36b7fd8487274799927350c64ed4b28374cb9c40
+Author: Becca Love <rlove1@nd.edu>
+Date:   Wed Aug 2 17:45:32 2017 -0400
 
-    Add another desirable conversion tool
+    Add tomatoes to the shopping list
 
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit bb13e9f40d12bddc307c7052e31ede7624dc9f4a
+Author: Becca Love <rlove1@nd.edu>
+Date:   Wed Aug 2 17:41:33 2017 -0400
 
-    Start notes on conversion tools
+    Start our shopping list
+
+commit 311116e95259eb2fe5eec1622c4960dce6c9dbcd
+Author: rrlove <rrlove@users.noreply.github.com>
+Date:   Wed Aug 2 17:02:27 2017 -0400
+
+    Initial commit
 ~~~
 {: .output}
 
@@ -520,11 +523,11 @@ repository (`git commit`):
 > ## Choosing a Commit Message
 >
 > Which of the following commit messages would be most appropriate for the
-> last commit made to `ToDo.txt`?
+> last commit made to `ingredients.txt`?
 >
 > 1. "Changes"
-> 2. "Added line '- Degrees to Radians' to ToDo.txt"
-> 3. "Add Degrees to Radians conversion"
+> 2. "Added line 'habaneros' to ingredients.txt"
+> 3. "Add habaneros"
 >
 > > ## Solution
 > > Answer 1 is not descriptive enough,
@@ -562,63 +565,55 @@ repository (`git commit`):
 > The staging area can hold changes from any number of files
 > that you want to commit as a single snapshot.
 >
-> 1. Add some text to `ToDo.txt` about how you want to implement all the conversion tools (One function? Many?)
-> 2. Create a new file `conversion.py` with an empty function in it (try just printing 'hello' for now)
+> 1. Add some text to `ingredients.txt` with your favorite additional ingredient
+> 2. Create a new file `methods.txt` with single step in it referring to that ingredient
 > 3. Add changes from both files to the staging area, and commit those changes
 >
 > > ## Solution
 > >
-> > First we make our changes to the `ToDo.txt` and `conversion.py` files:
+> > First we make our changes to the `ingredients.txt` and `methods.txt` files:
 > >
 > > ~~~
-> > $ nano ToDo.txt
-> > $ cat ToDo.txt
+> > $ nano ingredients.txt
+> > $ cat ingredients.txt
 > > ~~~
 > > {: .bash}
 > >
 > > ~~~
-> > Conversion functions needed:
-> > 
-> > - Dollars to Cents
-> > - Gallons to Liters
-> > - Hours to Minutes
-> > - Feet to Inches
-> > - Degrees to Radians
-> >
-> >
-> > Implemention
-> >
-> > Probably better to write different functions for each conversion,
-> > instead of handling all conversions in a single function
+> > 4 avocados
+> > 1/2 onion
+> > cilantro
+> > salt
+> > pepper
+> > 1/2 tomato
+> > habaneros
+> > parsley
 > > ~~~
 > > {: .output}
 > >
 > > ~~~
-> > $ nano conversion.py
-> > $ cat conversion.py
+> > $ nano methods.txt
+> > $ cat methods.txt
 > > ~~~
 > > {: .bash}
 > >
 > > ~~~
-> > # My Conversion Tools
-> >
-> > def dollars2cents(dollars):
-> >     print("Hello!", dollars)
+> > 1. Chop the parsley roughly.
 > > ~~~
 > > {: .output}
 > >
 > > Now you can add both files to the staging area. We can do that in one line:
 > >
 > > ~~~
-> > $ git add ToDo.txt conversion.py
+> > $ git add ingredients.txt methods.txt
 > > ~~~
 > > {: .bash}
 > >
 > > Or with multiple commands:
 > >
 > > ~~~
-> > $ git add ToDo.txt
-> > $ git add conversion.py
+> > $ git add ingredients.txt
+> > $ git add methods.txt
 > > ~~~
 > > {: .bash}
 > >
@@ -626,14 +621,14 @@ repository (`git commit`):
 > > If you are ready to commit use:
 > >
 > > ~~~
-> > $ git commit -m "Implementation plan outlined"
+> > $ git commit -m "Add parsley"
 > > ~~~
 > > {: .bash}
 > >
 > > ~~~
-> > [master cc127c2]
-> > Implementation plan outlined
-> > 2 files changed, 10 insertions(+)
+> > [master c878256] Add parsley
+> > 2 files changed, 2 insertions(+)
+> > create mode 100644 methods.txt
 > > ~~~
 > > {: .output}
 > >
