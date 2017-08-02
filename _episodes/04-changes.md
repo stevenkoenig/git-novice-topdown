@@ -124,8 +124,8 @@ $ git commit -m "Start our shopping list"
 {: .bash}
 
 ~~~
-[master (root-commit) f22b25e] Start notes on conversion tools
- 1 file changed, 5 insertion(+)
+[master bb13e9f] Start our shopping list
+ 1 file changed, 5 insertions(+)
  create mode 100644 ingredients.txt
 ~~~
 {: .output}
