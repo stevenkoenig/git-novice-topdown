@@ -171,7 +171,7 @@ $ git log
 
 ~~~
 commit bb13e9f40d12bddc307c7052e31ede7624dc9f4a
-Author: Becca Love <rlove1@nd.edu>
+Author: Becca Love <guacmaster@nd.edu>
 Date:   Wed Aug 2 17:41:33 2017 -0400
 
     Start our shopping list
@@ -299,7 +299,7 @@ Let's fix that:
 
 ~~~
 $ git add ingredients.txt
-$ git commit -m "Add another desirable conversion tool"
+$ git commit -m "Add tomatoes to the shopping list"
 ~~~
 {: .bash}
 
@@ -390,7 +390,7 @@ Now let's put that change in the staging area
 and see what `git diff` reports:
 
 ~~~
-$ git add ToDo.txt
+$ git add ingredients.txt
 $ git diff
 ~~~
 {: .bash}
@@ -455,19 +455,19 @@ $ git log
 
 ~~~
 commit a6cca18f221f51403466a1bb80a6871a97bae355
-Author: Becca Love <rlove1@nd.edu>
+Author: Becca Love <guacmaster@nd.edu>
 Date:   Wed Aug 2 17:47:08 2017 -0400
 
     Add some heat to this guac
 
 commit 36b7fd8487274799927350c64ed4b28374cb9c40
-Author: Becca Love <rlove1@nd.edu>
+Author: Becca Love <guacmaster@nd.edu>
 Date:   Wed Aug 2 17:45:32 2017 -0400
 
     Add tomatoes to the shopping list
 
 commit bb13e9f40d12bddc307c7052e31ede7624dc9f4a
-Author: Becca Love <rlove1@nd.edu>
+Author: Becca Love <guacmaster@nd.edu>
 Date:   Wed Aug 2 17:41:33 2017 -0400
 
     Start our shopping list
