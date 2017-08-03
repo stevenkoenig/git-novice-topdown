@@ -63,18 +63,18 @@ salt
 1/2 onion
 cilantro
 pepper
-peas
+1/2 tomato
 ~~~
 {: .output}
 
 ~~~
 $ git add ingredients.txt
-$ git commit -m "The New York Times said so"
+$ git commit -m "add tomato"
 ~~~
 {: .bash}
 
 ~~~
- [master 7fb6b7e] The New York Times said so
+ [master 7fb6b7e] add tomato
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
