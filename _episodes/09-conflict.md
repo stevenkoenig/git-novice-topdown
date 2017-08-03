@@ -20,55 +20,54 @@ different changes to each copy.  Version control helps us manage these
 [resolve]({{ page.root }}/reference/#resolve) overlapping changes.
 
 To see how we can resolve conflicts, we must first create one.  The file
-`conversion.py` currently looks like this in both partners' copies of our `conversions`
+`ingredients.txt` currently looks like this in both partners' copies of our `ingredients.txt`
 repository:
 
 ~~~
-$ cat conversion.py
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-# My Conversion Tools
-
-def dollars2cents(dollars):
-    cents = dollars * 100
-    return cents
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
 ~~~
 {: .output}
 
-Let's add a new convert function to one partner's copy only:
+Let's add a new ingredient to one partner's copy only:
 
 ~~~
-$ nano conversion.py
-$ cat conversion.py
+$ nano ingredients.txt
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-# My Conversion Tools
-
-def dollars2cents(dollars):
-    cents = dollars * 100
-    return cents
-
-def gallons2liters(gallons):
-    liters = gallons * 3.78541
-    return liters
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
+peas
 ~~~
 {: .output}
 
 and then push the change to GitHub:
 
 ~~~
-$ git add conversion.py
-$ git commit -m "Adding gallons2liters function"
+$ git add ingredients.txt
+$ git commit -m "The New York Times said so"
 ~~~
 {: .bash}
 
 ~~~
-[master 5ae9631] Adding gallons2liters
- 1 file changed, 5 insertion(+)
+[master e3814e4] The New York Times said so
+ 1 file changed, 1 insertion(+)
 ~~~
 {: .output}
 
@@ -78,14 +77,13 @@ $ git push
 {: .bash}
 
 ~~~
-Counting objects: 3, done.
-Delta compression using up to 24 threads.
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 371 bytes | 0 bytes/s, done.
-Total 3 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1), completed with 1 local objects.
-To https://github.com/biologyguy/conversions.git
-   fc7397d..12d2b5e  master -> master
+Writing objects: 100% (3/3), 342 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/guacmaster/guac.git
+   7fb6b7e..e3814e4  master -> master
 ~~~
 {: .output}
 
@@ -94,34 +92,32 @@ make a different change to their copy
 *without* updating from GitHub:
 
 ~~~
-$ nano conversion.py
-$ cat conversion.py
+$ nano ingredients.txt
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-# My Conversion Tools
-
-def dollars2cents(dollars):
-    cents = dollars * 100
-    return cents
-
-def hours2minutes(hours):
-    minutes = hours * 60
-    return hours
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
+lime juice
 ~~~
 {: .output}
 
 We can commit the change locally:
 
 ~~~
-$ git add conversion.py
-$ git commit -m "Adding hours2mintes function"
+$ git add ingredients.txt
+$ git commit -m "Add citrus"
 ~~~
 {: .bash}
 
 ~~~
-[master 07ebc69] Adding hours2mintes
+[master 07ebc69] Add citrus
  1 file changed, 5 insertion(+)
 ~~~
 {: .output}
@@ -134,9 +130,9 @@ $ git push
 {: .bash}
 
 ~~~
-To https://github.com/biologyguy/conversions.git
+To https://github.com/guacmaster/guac.git
  ! [rejected]        master -> master (fetch first)
-error: failed to push some refs to 'https://github.com/biologyguy/conversions.git'
+error: failed to push some refs to 'https://github.com/guacmaster/guac.git'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
 hint: to the same ref. You may want to first integrate the remote changes
@@ -164,10 +160,10 @@ remote: Counting objects: 3, done.
 remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0
 Unpacking objects: 100% (3/3), done.
-From https://github.com/biologyguy/conversions
+From https://github.com/guacmaster/guac
    12d2b5e..5fa9f4b  master     -> origin/master
-Auto-merging conversion.py
-CONFLICT (content): Merge conflict in conversion.py
+Auto-merging ingredients.txt
+CONFLICT (content): Merge conflict in ingredients.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ~~~
 {: .output}
@@ -176,25 +172,21 @@ Automatic merge failed; fix conflicts and then commit the result.
 and marks that conflict in the affected file:
 
 ~~~
-$ cat conversion.py
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-# My Conversion Tools
-
-def dollars2cents(dollars):
-    cents = dollars * 100
-    return cents
-
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
 <<<<<<< HEAD
-def hours2minutes(hours):
-    minutes = hours * 60
-    return hours
+peas
 =======
-def gallons2liters(gallons):
-    liters = gallons * 3.78541
-    return liters
+lime juice
 >>>>>>> 5fa9f4bbc64cfea4231f462afb1147b8e4703aaa
 ~~~
 {: .output}
@@ -211,40 +203,29 @@ We can do anything we want: keep the change made in the local repository, keep
 the change made in the remote repository, write something new to replace both,
 or get rid of the change entirely.
 
-In this case, we want both functions, so let's simply delete the
- merge-generated markup.
-
 ~~~
-$ nano conversion.py
-$ cat conversion.py
+$ nano ingredients.txt
+$ cat ingredients.txt
 ~~~
 {: .bash}
 
 ~~~
-# My Conversion Tools
-
-def dollars2cents(dollars):
-    cents = dollars * 100
-    return cents
-
-
-def hours2minutes(hours):
-    minutes = hours * 60
-    return hours
-
-
-def gallons2liters(gallons):
-    liters = gallons * 3.78541
-    return liters
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
+lime juice
 ~~~
 {: .output}
 
 To finish merging,
-we add `conversion.py` to the changes being made by the merge
+we add `ingredients.txt` to the changes being made by the merge
 and then commit:
 
 ~~~
-$ git add conversion.py
+$ git add ingredients.txt
 $ git status
 ~~~
 {: .bash}
@@ -259,12 +240,12 @@ All conflicts fixed but you are still merging.
 
 Changes to be committed:
 
-	modified:   conversion.py
+	modified:   ingredients.txt
 ~~~
 {: .output}
 
 ~~~
-$ git commit -m "Merging changes from GitHub"
+$ git commit -m "peas have no place in guacamole"
 ~~~
 {: .bash}
 
@@ -287,7 +268,7 @@ Compressing objects: 100% (6/6), done.
 Writing objects: 100% (6/6), 591 bytes | 0 bytes/s, done.
 Total 6 (delta 4), reused 0 (delta 0)
 remote: Resolving deltas: 100% (4/4), completed with 2 local objects.
-To https://github.com/biologyguy/conversions.git
+To https://github.com/guacmaster/guac.git
    5fa9f4b..3fec3a2  master -> master
 ~~~
 {: .output}
@@ -306,7 +287,7 @@ remote: Counting objects: 6, done.
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 6 (delta 4), reused 6 (delta 4), pack-reused 0
 Unpacking objects: 100% (6/6), done.
-From https://github.com/biologyguy/conversions
+From https://github.com/guacmaster/conversions
    5fa9f4b..3fec3a2  master     -> origin/master
 Updating 5fa9f4b..3fec3a2
 Fast-forward
@@ -315,29 +296,21 @@ Fast-forward
 ~~~
 {: .output}
 
-We get the merged file:
+We get the edited file:
 
 ~~~
-$ cat conversion.py
+$ cat ingredients
 ~~~
 {: .bash}
 
 ~~~
-# My Conversion Tools
-
-def dollars2cents(dollars):
-    cents = dollars * 100
-    return cents
-
-
-def hours2minutes(hours):
-    minutes = hours * 60
-    return hours
-
-
-def gallons2liters(gallons):
-    liters = gallons * 3.78541
-    return liters
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
+lime juice
 ~~~
 {: .output}
 
@@ -353,9 +326,7 @@ Version control's ability to merge conflicting changes
 
 > ## Solving Conflicts that You Create
 >
-> Each partner finish one of the remaining conversion functions 
-> (feet2inches() and degrees2radians()) in there own copy of a shared
-> repository and create another conflict. Use the same steps as above to
+> Each partner edit methods.txt to create another conflict. Use the same steps as above to
 > resolve the conflict
 {: .challenge}
 
