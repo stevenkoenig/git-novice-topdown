@@ -26,18 +26,15 @@ $ nano ingredients.txt
 ~~~
 {: .bash}
 
-Type the text below into the `ingredients.txt` file:
+Type the line below into the `ingredients.txt` file:
 
 ~~~
 4 avocados
-1/2 onion
-cilantro
 salt
-pepper
 ~~~
 {: .output}
 
-`ingredients.txt` now contains several lines, which we can see by running:
+`ingredients.txt` now contains two lines, which we can see by running:
 
 ~~~
 $ ls
@@ -56,10 +53,7 @@ $ cat ingredients.txt
 
 ~~~
 4 avocados
-1/2 onion
-cilantro
 salt
-pepper
 ~~~
 {: .output}
 
@@ -170,9 +164,9 @@ $ git log
 {: .bash}
 
 ~~~
-commit bb13e9f40d12bddc307c7052e31ede7624dc9f4a
+commit 172a2f0d1da2034b94fb3a47ad182bfc04172caf
 Author: Becca Love <guacmaster@nd.edu>
-Date:   Wed Aug 2 17:41:33 2017 -0400
+Date:   Thu Aug 3 15:47:15 2017 -0400
 
     Start our shopping list
 ~~~
@@ -204,11 +198,8 @@ $ cat ingredients.txt
 
 ~~~
 4 avocados
-1/2 onion
-cilantro
 salt
-pepper
-1/2 tomato
+1/2 onion
 ~~~
 {: .output}
 
@@ -247,14 +238,13 @@ $ git diff
 
 ~~~
 diff --git a/ingredients.txt b/ingredients.txt
-index 946aaff..a97a372 100644
+index 075e446..0c5ef26 100644
 --- a/ingredients.txt
 +++ b/ingredients.txt
-@@ -3,3 +3,4 @@
- cilantro
+@@ -1,2 +1,3 @@
+ 4 avocados
  salt
- pepper
-+1/2 tomato
++1/2 onion
 ~~~
 {: .output}
 
@@ -265,7 +255,7 @@ The output is cryptic because it is actually a series of computer
 1.  The first line tells us that Git is producing output similar to the
     Unix `diff` command comparing the old and new versions of the file.
 2.  The second line tells exactly which versions of the file
-    Git is comparing; `946aaff` and `a97a372` are unique
+    Git is comparing; `075e446` and `0c5ef26` are unique
     computer-generated labels for those versions.
 3.  The third and fourth lines once again show the name of the file
     being changed.
@@ -276,7 +266,7 @@ The output is cryptic because it is actually a series of computer
 After reviewing our change, it's time to commit it:
 
 ~~~
-$ git commit -m "Add tomatoes to the shopping list"
+$ git commit -m "Add onions"
 $ git status
 ~~~
 {: .bash}
@@ -299,12 +289,12 @@ Let's fix that:
 
 ~~~
 $ git add ingredients.txt
-$ git commit -m "Add tomatoes to the shopping list"
+$ git commit -m "Add onions"
 ~~~
 {: .bash}
 
 ~~~
-[master 36b7fd8] Add tomatoes to the shopping list
+[master 29980de] Add onions
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
@@ -356,12 +346,9 @@ $ cat ingredients.txt
 
 ~~~
 4 avocados
+salt
 1/2 onion
 cilantro
-salt
-pepper
-1/2 tomato
-habaneros
 ~~~
 {: .output}
 
@@ -372,14 +359,14 @@ $ git diff
 
 ~~~
 diff --git a/ingredients.txt b/ingredients.txt
-index a97a372..2156a4f 100644
+index 0c5ef26..fd4db14 100644
 --- a/ingredients.txt
 +++ b/ingredients.txt
-@@ -4,3 +4,4 @@ cilantro
+@@ -1,3 +1,4 @@
+ 4 avocados
  salt
- pepper
- 1/2 tomato
-+habaneros
+ 1/2 onion
++cilantro
 ~~~
 {: .output}
 
@@ -406,14 +393,14 @@ $ git diff --staged
 
 ~~~
 diff --git a/ingredients.txt b/ingredients.txt
-index a97a372..2156a4f 100644
+index 0c5ef26..fd4db14 100644
 --- a/ingredients.txt
 +++ b/ingredients.txt
-@@ -4,3 +4,4 @@ cilantro
+@@ -1,3 +1,4 @@
+ 4 avocados
  salt
- pepper
- 1/2 tomato
-+habaneros
+ 1/2 onion
++cilantro
 ~~~
 {: .output}
 
@@ -423,12 +410,12 @@ and what's in the staging area.
 Let's save our changes:
 
 ~~~
-$ git commit -m "Add some heat to this guac"
+$ git commit -m "Add cilantro"
 ~~~
 {: .bash}
 
 ~~~
-[master a6cca18] Add some heat to this guac
+[master e744ac7] Add cilantro
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
@@ -454,29 +441,23 @@ $ git log
 {: .bash}
 
 ~~~
-commit a6cca18f221f51403466a1bb80a6871a97bae355
+commit e744ac7a2605fa15d55f75b0f5e00b61e756d815
 Author: Becca Love <guacmaster@nd.edu>
-Date:   Wed Aug 2 17:47:08 2017 -0400
+Date:   Thu Aug 3 15:51:22 2017 -0400
 
-    Add some heat to this guac
+    Add cilantro
 
-commit 36b7fd8487274799927350c64ed4b28374cb9c40
+commit 29980dee91ca6b5588153a22598aafddc1a55bc2
 Author: Becca Love <guacmaster@nd.edu>
-Date:   Wed Aug 2 17:45:32 2017 -0400
+Date:   Thu Aug 3 15:49:06 2017 -0400
 
-    Add tomatoes to the shopping list
+    Add onions
 
-commit bb13e9f40d12bddc307c7052e31ede7624dc9f4a
+commit 172a2f0d1da2034b94fb3a47ad182bfc04172caf
 Author: Becca Love <guacmaster@nd.edu>
-Date:   Wed Aug 2 17:41:33 2017 -0400
+Date:   Thu Aug 3 15:47:15 2017 -0400
 
     Start our shopping list
-
-commit 311116e95259eb2fe5eec1622c4960dce6c9dbcd
-Author: rrlove <rrlove@users.noreply.github.com>
-Date:   Wed Aug 2 17:02:27 2017 -0400
-
-    Initial commit
 ~~~
 {: .output}
 
@@ -526,7 +507,7 @@ repository (`git commit`):
 > last commit made to `ingredients.txt`?
 >
 > 1. "Changes"
-> 2. "Added line 'habaneros' to ingredients.txt"
+> 2. "Added line 'cilantro' as last line of ingredients.txt"
 > 3. "Add habaneros"
 >
 > > ## Solution
@@ -566,7 +547,7 @@ repository (`git commit`):
 > that you want to commit as a single snapshot.
 >
 > 1. Add some text to `ingredients.txt` with your favorite additional ingredient
-> 2. Create a new file `methods.txt` with single step in it referring to that ingredient
+> 2. Create a new file `methods.txt` describing what to do with all the ingredients
 > 3. Add changes from both files to the staging area, and commit those changes
 >
 > > ## Solution
@@ -581,13 +562,10 @@ repository (`git commit`):
 > >
 > > ~~~
 > > 4 avocados
+> > salt
 > > 1/2 onion
 > > cilantro
-> > salt
 > > pepper
-> > 1/2 tomato
-> > habaneros
-> > parsley
 > > ~~~
 > > {: .output}
 > >
@@ -598,7 +576,11 @@ repository (`git commit`):
 > > {: .bash}
 > >
 > > ~~~
-> > 1. Chop the parsley roughly.
+> > 1. Wash the avocados and rinse the parsley and onion.
+> > 2. Dice the onion finely. Chop the cilantro roughly. Place in mixing bowl.
+> > 3. Slice open each avocado and scoop out the flesh into the bowl.
+> > 4. Smash avocado flesh.
+> > 5. Mix all ingredients well. Add salt and pepper to taste.
 > > ~~~
 > > {: .output}
 > >
@@ -621,13 +603,13 @@ repository (`git commit`):
 > > If you are ready to commit use:
 > >
 > > ~~~
-> > $ git commit -m "Add parsley"
+> > $ git commit -m "Update with pepper and instructions"
 > > ~~~
 > > {: .bash}
 > >
 > > ~~~
-> > [master c878256] Add parsley
-> > 2 files changed, 2 insertions(+)
+> > [master f237e9f] Update with pepper and instructions
+> > 2 files changed, 6 insertions(+)
 > > create mode 100644 methods.txt
 > > ~~~
 > > {: .output}
