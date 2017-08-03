@@ -77,13 +77,13 @@ nothing to commit (create/copy files and use "git add" to track)
 > create one Git repository inside another:
 >
 > ~~~
-> $ cd             # return to home directory
-> $ mkdir guac     # make a new directory guac
-> $ cd guac        # go into guac
-> $ git init       # make the guac directory a Git repository
+> $ cd                      # return to home directory
+> $ mkdir guac              # make a new directory guac
+> $ cd guac                 # go into guac
+> $ git init                # make the guac directory a Git repository
 > $ mkdir family_recipes    # make a sub-directory guac/family_recipes
 > $ cd family_recipes       # go into guac/family_recipes
-> $ git init       # make the family_recipes sub-directory a Git repository
+> $ git init                # make the family_recipes sub-directory a Git repository
 > ~~~
 > {: .bash}
 >
@@ -112,11 +112,11 @@ nothing to commit (create/copy files and use "git add" to track)
 > > Note that we can track files in directories within a Git:
 > >
 > > ~~~
-> > $ touch dad mom aunt_phoebe maria   # create recipe files
-> > $ cd ..                             # return to guac directory
-> > $ ls family_recipes                          # list contents of the family_recipes directory
-> > $ git add family_recipes/*                   # add all contents of guac/family_recipes
-> > $ git status                        # show family_recipes files in staging area
+> > $ touch dad mom aunt_phoebe maria               # create recipe files
+> > $ cd ..                                         # return to guac directory
+> > $ ls family_recipes                             # list contents of the family_recipes directory
+> > $ git add family_recipes/*                      # add all contents of guac/family_recipes
+> > $ git status                                    # show family_recipes files in staging area
 > > $ git commit -m "add recipes from relatives"    # commit guac/family_recipes to guac Git repository
 > > ~~~
 > > {: .bash}
