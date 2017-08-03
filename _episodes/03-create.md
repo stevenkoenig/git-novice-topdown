@@ -3,68 +3,58 @@ title: Creating a Repository
 teaching: 10
 exercises: 0
 questions:
-- "How can we create a new Git repository"
+- "Where does Git store information?"
 objectives:
 - "Create a local Git repository."
 keypoints:
-- "GitHub makes creating a new repository very easy."
+- "`git init` initializes a repository."
 ---
 
-Once Git is configured, we can start using it. We are going to be looking
- at everything through the lens of [GitHub](https://github.com/), which
- is a highly popular online repository host that makes creating and
- managing repositories very easy. Be aware that everything we do
- on the website is also available from the command line, but we are going
- to gloss over most of those details during the workshop.
-
-
-Open your web browser to [GitHub](https://github.com/) and log in (or
- create an account if necessary)
- 
-From your main dashboard, click on the little '+' drop-down menu and
- select 'New repository'
- 
-![Creating a Repository on GitHub (Step 1)](../fig/github-create-repo-01.png)
-
-&nbsp;
-
-Name your repository "[your name]-guac" (replacing [your name]
- with your actual name), select "Public", check "Initialize this repository
- with a README", and click "Create Repository"
-
-![Creating a Repository on GitHub (Step 2)](../fig/github-create-repo-02.png)
-
-&nbsp;
-
-Once the new repository is created, you will need to copy the URL displayed
- when you click on the 'Clone or download' button:
-
-![Creating a Repository on GitHub (Step 3)](../fig/github-create-repo-03.png)
-
-&nbsp;
-
-Copy the URL provided and clone the repository onto your computer by
- running the following command (make sure to replace the url!):
+Once Git is configured,
+we can start using it.
+Let's create a directory for our work and then move into that directory:
 
 ~~~
-$ git clone https://your_repository's_url
-$ cd your_repository
+$ mkdir guac
+$ cd guac
+~~~
+{: .bash}
+
+Then we tell Git to make `guac` a [repository]({{ page.root }}/reference/#repository)—a place where
+Git can store versions of our files:
+
+~~~
+$ git init
+~~~
+{: .bash}
+
+If we use `ls` to show the directory's contents,
+it appears that nothing has changed:
+
+~~~
+$ ls
+~~~
+{: .bash}
+
+But if we add the `-a` flag to show everything,
+we can see that Git has created a hidden directory within `planets` called `.git`:
+
+~~~
 $ ls -a
 ~~~
 {: .bash}
 
-We should see a pristine Git repository with a README file:
-
 ~~~
-.	..	.git	README
+.	..	.git
 ~~~
 {: .output}
 
-Git stores information about the project in the special .git
- sub-directory. If we ever delete it, we will lose the project's history.
+Git stores information about the project in this special sub-directory.
+If we ever delete it,
+we will lose the project's history.
 
-We can check that everything is set up correctly by asking Git to tell
- us the status of our project:
+We can check that everything is set up correctly
+by asking Git to tell us the status of our project:
 
 ~~~
 $ git status
@@ -79,3 +69,81 @@ $ git status
 nothing to commit (create/copy files and use "git add" to track)
 ~~~
 {: .output}
+
+> ## Places to Create Git Repositories
+>
+> We start a new project, `family_recipes`, related to our `guac` project.
+> We enter the following sequence of commands to
+> create one Git repository inside another:
+>
+> ~~~
+> $ cd             # return to home directory
+> $ mkdir guac     # make a new directory guac
+> $ cd guac        # go into guac
+> $ git init       # make the guac directory a Git repository
+> $ mkdir family_recipes    # make a sub-directory guac/family_recipes
+> $ cd family_recipes       # go into guac/family_recipes
+> $ git init       # make the family_recipes sub-directory a Git repository
+> ~~~
+> {: .bash}
+>
+> Why is it a bad idea to do this? (Notice here that the `guac` project is now also tracking the entire `family_recipes` repository.)
+> How can we undo our last `git init`?
+>
+> > ## Solution
+> >
+> > Git repositories can interfere with each other if they are "nested" in the
+> > directory of another: the outer repository will try to version-control 
+> > the inner repository. Therefore, it's best to create each new Git
+> > repository in a separate directory. To be sure that there is no conflicting
+> > repository in the directory, check the output of `git status`. If it looks
+> > like the following, you are good to go to create a new repository as shown 
+> > above:
+> >
+> > ~~~
+> > $ git status
+> > ~~~
+> > {: .bash}
+> > ~~~
+> > fatal: Not a git repository (or any of the parent directories): .git
+> > ~~~
+> > {: .output}
+> >
+> > Note that we can track files in directories within a Git:
+> >
+> > ~~~
+> > $ touch dad mom aunt_phoebe maria   # create recipe files
+> > $ cd ..                             # return to guac directory
+> > $ ls family_recipes                          # list contents of the family_recipes directory
+> > $ git add family_recipes/*                   # add all contents of guac/family_recipes
+> > $ git status                        # show family_recipes files in staging area
+> > $ git commit -m "add recipes from relatives"    # commit guac/family_recipes to guac Git repository
+> > ~~~
+> > {: .bash}
+> >
+> > Similarly, we can ignore (as discussed later) entire directories, such as the `family_recipes` directory:
+> >
+> > ~~~
+> > $ nano .gitignore # open the .gitignore file in the texteditor to add the family_recipes directory
+> > $ cat .gitignore # if you run cat afterwards, it should look like this:
+> > ~~~
+> > {: .bash}
+> >
+> > ~~~
+> > family_recipes
+> > ~~~
+> > {: .output}
+> >
+> > To recover from this little mistake, we can just remove the `.git`
+> > folder in the family_recipes subdirectory. To do so we can run the following command from inside the 'family_recipes' directory:
+> >
+> > ~~~
+> > $ rm -rf family_recipes/.git
+> > ~~~
+> > {: .bash}
+> >
+> > But be careful! Running this command in the wrong directory, will remove
+> > the entire git-history of a project you might wanted to keep. Therefore, always check your current directory using the
+> > command `pwd`.
+> {: .solution}
+{: .challenge}
