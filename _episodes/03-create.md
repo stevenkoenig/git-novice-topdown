@@ -28,7 +28,7 @@ From your main dashboard, click on the little '+' drop-down menu and
 
 &nbsp;
 
-Name your repository "[your name]-conversion" (replacing [your name]
+Name your repository "[your name]-guac" (replacing [your name]
  with your actual name), select "Public", check "Initialize this repository
  with a README", and click "Create Repository"
 
