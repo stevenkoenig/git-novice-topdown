@@ -165,7 +165,7 @@ $ git log
 
 ~~~
 commit 172a2f0d1da2034b94fb3a47ad182bfc04172caf
-Author: Becca Love <guacmaster@nd.edu>
+Author: The Guacmaster <guacmaster@guac.guac>
 Date:   Thu Aug 3 15:47:15 2017 -0400
 
     Start our shopping list
@@ -442,19 +442,19 @@ $ git log
 
 ~~~
 commit e744ac7a2605fa15d55f75b0f5e00b61e756d815
-Author: Becca Love <guacmaster@nd.edu>
+Author: The Guacmaster <guacmaster@guac.guac>
 Date:   Thu Aug 3 15:51:22 2017 -0400
 
     Add cilantro
 
 commit 29980dee91ca6b5588153a22598aafddc1a55bc2
-Author: Becca Love <guacmaster@nd.edu>
+Author: The Guacmaster <guacmaster@guac.guac>
 Date:   Thu Aug 3 15:49:06 2017 -0400
 
     Add onions
 
 commit 172a2f0d1da2034b94fb3a47ad182bfc04172caf
-Author: Becca Love <guacmaster@nd.edu>
+Author: The Guacmaster <guacmaster@guac.guac>
 Date:   Thu Aug 3 15:47:15 2017 -0400
 
     Start our shopping list
@@ -508,7 +508,7 @@ repository (`git commit`):
 >
 > 1. "Changes"
 > 2. "Added line 'cilantro' as last line of ingredients.txt"
-> 3. "Add habaneros"
+> 3. "Add cilantro"
 >
 > > ## Solution
 > > Answer 1 is not descriptive enough,
