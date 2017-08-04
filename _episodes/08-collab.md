@@ -119,7 +119,6 @@ Updating 9272da5..29aba7c
 Fast-forward
  ingredients.txt | 3 ++-
  1 file changed, 2 insertion(+), 1 deletion(-)
- create mode 100644 pluto.txt
 ~~~
 {: .output}
 
