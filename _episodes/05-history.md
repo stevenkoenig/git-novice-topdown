@@ -102,7 +102,7 @@ $ git show HEAD~2 ingredients.txt
 
 ~~~
 commit 29980dee91ca6b5588153a22598aafddc1a55bc2
-Author: Becca Love <guacmaster@nd.edu>
+Author: The Guacmaster <guacmaster@guac.guac>
 Date:   Thu Aug 3 15:49:06 2017 -0400
 
     Add onions
@@ -162,7 +162,7 @@ but typing out random 40-character strings is annoying,
 so Git lets us use just the first few characters:
 
 ~~~
-$ git diff f22b25e mars.txt
+$ git diff 172a2f0 ingredients.txt
 ~~~
 {: .bash}
 
@@ -390,7 +390,7 @@ moving backward and forward in time becomes much easier.
 
 > ## Understanding Workflow and History
 >
-> What is the output of cat venus.txt at the end of this set of commands?
+> What is the output of cat equipment.txt at the end of this set of commands?
 >
 > ~~~
 > $ cd guac
@@ -399,7 +399,7 @@ moving backward and forward in time becomes much easier.
 > $ nano equipment.txt #add the following text: spoon
 > $ git commit -m "Compile the utensils we need"
 > $ git checkout HEAD equipment.txt
-> $ cat equipment.txt #this will print the contents of venus.txt to the screen
+> $ cat equipment.txt #this will print the contents of equipment.txt to the screen
 > ~~~
 > {: .bash}
 >
@@ -428,7 +428,7 @@ moving backward and forward in time becomes much easier.
 > 4.
 >
 > ~~~
-> Error because you have changed venus.txt without committing the changes
+> Error because you have changed equipment.txt without committing the changes
 > ~~~
 > {: .output}
 >
@@ -504,7 +504,7 @@ moving backward and forward in time becomes much easier.
 > the right commit ID, especially if the commit is from several months ago.
 >
 > Imagine the `guac` project has more than 50 recipes that we've collected from friends and family.
-> You would like to find a commit with specific text in `ingredients.txt` is modified.
+> You would like to find a commit when specific text in `ingredients.txt` was modified.
 > When you type `git log`, a very long list appeared,
 > How can you narrow down the search?
 >
