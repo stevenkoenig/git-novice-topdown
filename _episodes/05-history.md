@@ -184,7 +184,7 @@ index 075e446..8b1782d 100644
 All right! So
 we can save changes to files and see what we've changed—now how
 can we restore older versions of things?
-Let's suppose we accidentally overwrite our file:
+Let's suppose we accidentally add an ingredient we really don't want:
 
 ~~~
 $ nano ingredients.txt
@@ -193,7 +193,13 @@ $ cat ingredients.txt
 {: .bash}
 
 ~~~
-medium Hass avocados
+4 avocados
+salt
+1/2 onion
+cilantro
+pepper
+1/2 tomato
+3 cups cayenne pepper
 ~~~
 {: .output}
 
