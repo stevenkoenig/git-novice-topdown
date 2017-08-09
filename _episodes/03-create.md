@@ -37,7 +37,7 @@ $ ls
 {: .bash}
 
 But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory within `planets` called `.git`:
+we can see that Git has created a hidden directory within `guac` called `.git`:
 
 ~~~
 $ ls -a
